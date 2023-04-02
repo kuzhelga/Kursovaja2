@@ -67,6 +67,5 @@ def get_formated_data(data):
         formated_data.append(f"""
         {date} {description}
         {from_info} {from_source} -> {to_info} {to_destination}
-        {row['operationAmount']['amount']} {row['operationAmount']['currency']['name']}
-        """)
-        return formated_data
+        {row['operationAmount']['amount']} {row['operationAmount']['currency']['name']}""")
+    return formated_data
