@@ -1,4 +1,5 @@
 import json
+from datetime import datetime
 from pprint import pprint
 
 
@@ -31,3 +32,41 @@ def get_five_last_values(data):
     data = sorted(data, key=lambda x: x['date'], reverse=True)
     return data[:5]
 
+
+def get_formated_data(data):
+    """ Функция с учетом типа счет/карта выводит данные по переводам в нужном формате
+    """
+    formated_data = []
+    for row in data:
+        date = datetime.strptime(row['date'], '%Y-%m-%dT%H:%M:%S.%f').strftime('%d.%m.%Y')
+
+        description = row['description']
+
+        sender = row['from'].split()
+        from_source = sender.pop(-1)
+        if len(from_source) == 16:
+            from_source = f'{from_source[:4]} {from_source[4:7]}** **** {from_source[-4:]}'
+            from_info = ' '.join(sender)
+        elif len(from_source) == 20:
+            from_source = f'** {from_source[-4:]}'
+            from_info = ' '.join(sender)
+        else:
+            print('this is not a card or account')
+
+        recipient = row['to'].split()
+        to_destination = recipient.pop(-1)
+        if len(to_destination) == 16:
+            to_destination = f'{to_destination[:4]} {to_destination[4:7]}** **** {to_destination[-4:]}'
+            to_info = ' '.join(recipient)
+        elif len(to_destination) == 20:
+            to_destination = f'** {to_destination[-4:]}'
+            to_info = ' '.join(recipient)
+        else:
+            print('this is not a card or account')
+
+        formated_data.append(f"""
+        {date} {description}
+        {from_info} {from_source} -> {to_info} {to_destination}
+        {row['operationAmount']['amount']} {row['operationAmount']['currency']['name']}
+        """)
+        return formated_data
