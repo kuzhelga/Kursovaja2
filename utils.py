@@ -45,7 +45,7 @@ def get_formated_data(data):
         sender = row['from'].split()
         from_source = sender.pop(-1)
         if len(from_source) == 16:
-            from_source = f'{from_source[:4]} {from_source[4:7]}** **** {from_source[-4:]}'
+            from_source = f'{from_source[:4]} {from_source[4:6]}** **** {from_source[-4:]}'
             from_info = ' '.join(sender)
         elif len(from_source) == 20:
             from_source = f'** {from_source[-4:]}'
@@ -56,7 +56,7 @@ def get_formated_data(data):
         recipient = row['to'].split()
         to_destination = recipient.pop(-1)
         if len(to_destination) == 16:
-            to_destination = f'{to_destination[:4]} {to_destination[4:7]}** **** {to_destination[-4:]}'
+            to_destination = f'{to_destination[:4]} {to_destination[4:6]}** **** {to_destination[-4:]}'
             to_info = ' '.join(recipient)
         elif len(to_destination) == 20:
             to_destination = f'** {to_destination[-4:]}'
