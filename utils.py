@@ -18,6 +18,13 @@ def get_filtered_data(data):
     return data
 
 
+def get_data_with_from(data):
+    """Функция фильтрует данные и возвращет по наличию поля 'from'
+    """
+    data = [x for x in data if 'from' in x]
+    return data
+
+
 def get_five_last_values(data):
     """Функция сортирует список по дате и возвращает последние 5 операций
     """
