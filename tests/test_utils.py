@@ -8,3 +8,5 @@ def test_get_data():
     assert isinstance(data, list)
 
 
+def test_get_filtered_data(test_data):
+    assert len(get_filtered_data(test_data)) == 1
