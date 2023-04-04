@@ -31,7 +31,9 @@ def get_formated_data(data):
     """ Функция с учетом типа счет/карта выводит данные по переводам в нужном формате
     """
     formated_data = []
+
     for row in data:
+
         date = datetime.strptime(row['date'], '%Y-%m-%dT%H:%M:%S.%f').strftime('%d.%m.%Y')
 
         description = row['description']
@@ -47,7 +49,6 @@ def get_formated_data(data):
                 from_info = ' '.join(sender)
         else:
             from_info, from_source = "Отправитель скрыт", ""
-
 
         recipient = row['to'].split()
         to_destination = recipient.pop(-1)
