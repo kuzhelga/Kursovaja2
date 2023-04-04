@@ -1,10 +1,9 @@
-from utils import get_data, get_filtered_data, get_five_last_values, get_data_with_from, get_formated_data
+from utils import get_data, get_filtered_data, get_five_last_values, get_formated_data
 
 
 def main():
     data = get_data()
     data = get_filtered_data(data)
-    data = get_data_with_from(data)
     data = get_five_last_values(data)
     data = get_formated_data(data)
 
